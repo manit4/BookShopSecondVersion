@@ -29,9 +29,9 @@ public class Runner {
 
 			case 2:
 
-				userRepository.login();
+				String username = userRepository.login();
 
-				System.out.println("Press 1 to see any Book Detail by Book-Id, press 0 for logout or press 2 for Exit");
+				System.out.println("Press 0 for logout or Press 1 to see any Book Detail by Book-Id or press 2 for Exit or Press 3 to update User Profile!!");
 
 				int inputAfterLogin = sc.nextInt();
 
@@ -42,7 +42,7 @@ public class Runner {
 					break;
 
 				case 1:
-					
+
 					boolean bookPresentFlag = true;
 					while(bookPresentFlag) {
 
@@ -65,7 +65,47 @@ public class Runner {
 				case 2:
 					System.out.println("Goodbye, see you again!!");
 					flag = false;
-				}	
+
+				case 3:
+
+					User user = userRepository.getUser(username);
+
+					System.out.println("here are your current details..");
+
+					System.out.println(user.getUsername()+", "+user.getName()+", "+user.getEmail());
+
+					System.out.println("press 1 to change the name and press 2 to change the Email!!");
+
+					int updateUseroption = sc.nextInt();
+
+					switch(updateUseroption) {
+
+					case 1:
+
+						System.out.println("Enter your name");
+
+						String name = sc.next();
+
+						user.setName(name);
+
+						userRepository.updateUser(user);
+
+						System.out.println("User Updated Successfully...");
+						break;
+					case 2:
+
+						System.out.println("Enter your Email");
+
+						String email = sc.next();
+
+						user.setName(email);
+
+						userRepository.updateUser(user);
+
+						System.out.println("User Updated Successfully...");
+					}
+				}
+
 
 				break;
 
